@@ -1,0 +1,27 @@
+package beverages;
+
+/**
+ * Created with IntelliJ IDEA.
+ * User: Igor
+ * Date: 11/12/12
+ * Time: 5:22 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class Soy extends CondimentDecorator {
+
+    Beverage beverage;
+
+    public Soy(Beverage beverage) {
+        this.beverage = beverage;
+    }
+
+    @Override
+    public String getDescription() {
+        return beverage.getDescription() + ", Soy";
+    }
+
+    @Override
+    public double cost() {
+        return beverage.cost() + 0.15;
+    }
+}
