@@ -1,7 +1,11 @@
 import commands.off.LightOffCommand;
 import commands.off.StereoOffCommand;
+import commands.on.CeilingFanHightCommand;
+import commands.on.CeilingFanLowCommand;
+import commands.on.CeilingFanOffCommand;
 import commands.on.LightOnCommand;
 import commands.on.StereoOnCommand;
+import devices.CeilingFan;
 import devices.Light;
 import devices.Stereo;
 
@@ -24,14 +28,32 @@ public class RemoteLoader {
         StereoOnCommand stereoOnCommand = new StereoOnCommand(stereo);
         StereoOffCommand stereoOffCommand = new StereoOffCommand(stereo);
 
+        CeilingFan ceilingFan = new CeilingFan();
+        CeilingFanHightCommand ceilingFanHightCommand = new CeilingFanHightCommand(ceilingFan);
+        CeilingFanLowCommand ceilingFanLowCommand = new CeilingFanLowCommand(ceilingFan);
+        CeilingFanOffCommand ceilingFanOffCommand = new CeilingFanOffCommand(ceilingFan);
+
         remoteControl.setCommand(0, lightOnCommand, lightOffCommand);
         remoteControl.setCommand(1, stereoOnCommand, stereoOffCommand);
+        remoteControl.setCommand(2, ceilingFanHightCommand, ceilingFanOffCommand);
+        remoteControl.setCommand(3, ceilingFanLowCommand, ceilingFanOffCommand);
 
         remoteControl.onButtonWasPushed(0);
         remoteControl.offButtonWasPushed(0);
 
         remoteControl.onButtonWasPushed(1);
         remoteControl.offButtonWasPushed(1);
+
+        remoteControl.undoButtonWasPushed();
+
+        remoteControl.onButtonWasPushed(3);
+        remoteControl.offButtonWasPushed(3);
+
+        remoteControl.undoButtonWasPushed();
+
+        remoteControl.onButtonWasPushed(2);
+
+        remoteControl.undoButtonWasPushed();
     }
 
 
